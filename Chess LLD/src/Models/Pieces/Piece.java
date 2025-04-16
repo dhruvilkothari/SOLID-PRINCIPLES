@@ -2,6 +2,7 @@ package Models.Pieces;
 
 import Models.Board.Cell;
 import Models.Helpers.Color;
+import Models.Helpers.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,22 @@ public abstract class Piece {
     }
     protected boolean isMovingVertical(Cell startingCell, Cell endingCell) {
         return startingCell.getHorizontalDistance(endingCell) == 1 && startingCell.getVerticalDistance(endingCell) == 0;
+    }
+    protected Direction getDirection(Cell startingCell, Cell endingCell) {
+
+        int x = endingCell.getX()-startingCell.getX();
+        int y = endingCell.getY()-startingCell.getY();
+        if(x == 0 && y == 0) {
+            return Direction.NONE;
+        }
+        if(x == 0) {
+            return y > 0 ? Direction.FORWARD_Y : Direction.BACKWARD_Y;
+        }
+        if(y == 0){
+            return x > 0 ? Direction.FORWARD_X : Direction.BACKWARD_X;
+        }
+        return Direction.DIAOGNAL;
+
     }
 
 
