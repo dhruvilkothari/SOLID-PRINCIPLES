@@ -2,6 +2,7 @@ package Models.Pieces;
 
 import Models.Board.Cell;
 import Models.Helpers.Color;
+import exceptions.InvalidPieceMoveException;
 
 public class Pawn extends Piece implements ChessPiece{
 
@@ -11,7 +12,22 @@ public class Pawn extends Piece implements ChessPiece{
     }
 
     @Override
-    public void makeMove(Cell startingCell, Cell endingCell) {
+    public boolean makeMove(Cell startingCell, Cell endingCell) {
+
+        if(startingCell.getVerticalDistance(endingCell)>2){
+            throw new InvalidPieceMoveException("Invalid move for pawn");
+        }
+        if(!isMovingForFirstTime() && startingCell.getVerticalDistance(endingCell) ==2){
+            throw new InvalidPieceMoveException("Invalid move for pawn");
+        }
+        if(isMovingHorizontal(startingCell, endingCell)){
+            throw new InvalidPieceMoveException("Invalid move for pawn");
+        }
+        if(endingCell.hasPiece() && !isMovingVertical(startingCell, endingCell)){
+            throw new InvalidPieceMoveException("Invalid move for pawn");
+        }
+        return true;
+
 
     }
 
@@ -34,4 +50,15 @@ public class Pawn extends Piece implements ChessPiece{
     public void listPossibleMoves(Cell startingCell) {
 
     }
+
+    @Override
+    public boolean isMovingForFirstTime() {
+        return this.isMovingForFirstTime();
+    }
+
+    public Color getColor() {
+        return this.getColor();
+    }
+
+
 }

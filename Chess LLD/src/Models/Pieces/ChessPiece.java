@@ -4,7 +4,7 @@ import Models.Board.Cell;
 
 public interface ChessPiece {
 
-    void makeMove(Cell startingCell, Cell  endingCell);
+    boolean makeMove(Cell startingCell, Cell  endingCell);
 
     void setKilled(boolean killed);
 
@@ -12,4 +12,6 @@ public interface ChessPiece {
     boolean canMove(Cell startingCell, Cell  endingCell);
 
     void listPossibleMoves(Cell startingCell);
+
+    boolean isMovingForFirstTime();
 }
