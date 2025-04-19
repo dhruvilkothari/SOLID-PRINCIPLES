@@ -26,4 +26,7 @@ public class Cell {
     public Optional<Piece> getPiece() {
         return piece;
     }
+    public void setPiece(Piece piece) {
+        this.piece = Optional.ofNullable(piece);
+    }
 }
