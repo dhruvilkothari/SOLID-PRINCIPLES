@@ -1,3 +1,0 @@
-public enum Status {
-    ACTIVE, INACTIVE, SAVED, BLACK_WIN, WHITE_WIN, DRAW, STALEMATE,
-}
